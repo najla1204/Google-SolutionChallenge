@@ -253,6 +253,52 @@ class SocialMediaScraper {
 
   // Mock data methods for demonstration
   private getMockTwitterData(query: string, location?: string): SocialMediaPost[] {
+    // If searching for Tamil Nadu, return Tamil Nadu specific data
+    if (location && location.toLowerCase().includes('tamil nadu')) {
+      return [
+        {
+          id: 'tn-1',
+          platform: 'twitter',
+          content: `URGENT: Water shortage in Chennai suburbs. Tambaram and Chromepet areas facing 48-hour water disruption. Tanker trucks needed! #ChennaiWater #TamilNadu`,
+          author: '@ChennaiWaterAlert',
+          location: 'Chennai, Tamil Nadu, India',
+          timestamp: new Date(Date.now() - 1 * 60 * 60 * 1000),
+          url: 'https://twitter.com/status/tn_water',
+          metrics: { likes: 567, shares: 234, comments: 123 }
+        },
+        {
+          id: 'tn-2',
+          platform: 'twitter',
+          content: `Cyclone warning for Nagapattinam coast. Fishermen advised not to venture into sea. Evacuation in progress. #Nagapattinam #Cyclone #TamilNadu`,
+          author: '@TNDisasterMgmt',
+          location: 'Nagapattinam, Tamil Nadu, India',
+          timestamp: new Date(Date.now() - 15 * 60 * 1000),
+          url: 'https://twitter.com/status/nagapattinam_cyclone',
+          metrics: { likes: 892, shares: 456, comments: 234 }
+        },
+        {
+          id: 'tn-3',
+          platform: 'twitter',
+          content: `Major accident on GST Road near Vandalur. Traffic blocked. Ambulances and police needed. #ChennaiTraffic #Emergency #TamilNadu`,
+          author: '@ChennaiTraffic',
+          location: 'Chennai, Tamil Nadu, India',
+          timestamp: new Date(Date.now() - 45 * 60 * 1000),
+          url: 'https://twitter.com/status/gst_accident',
+          metrics: { likes: 345, shares: 123, comments: 67 }
+        },
+        {
+          id: 'tn-4',
+          platform: 'twitter',
+          content: `Power outage in Madurai affecting 50,000+ households. Transformer failure in Thiruparankundram. TANGEDCO working on restoration. #MaduraiPower #TamilNadu`,
+          author: '@MaduraiUpdates',
+          location: 'Madurai, Tamil Nadu, India',
+          timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000),
+          url: 'https://twitter.com/status/madurai_power',
+          metrics: { likes: 234, shares: 89, comments: 45 }
+        }
+      ];
+    }
+
     return [
       {
         id: '1',
@@ -278,6 +324,32 @@ class SocialMediaScraper {
   }
 
   private getMockFacebookData(query: string, location?: string): SocialMediaPost[] {
+    // If searching for Tamil Nadu, return Tamil Nadu specific data
+    if (location && location.toLowerCase().includes('tamil nadu')) {
+      return [
+        {
+          id: 'tn-fb-1',
+          platform: 'facebook',
+          content: `Flood warning in Coimbatore district. Heavy rainfall causing waterlogging. Noyyal River water level rising. Residents in Singanallur and Peelamedu advised to move to safer locations. #CoimbatoreFlood #TamilNadu`,
+          author: 'Coimbatore Disaster Management',
+          location: 'Coimbatore, Tamil Nadu, India',
+          timestamp: new Date(Date.now() - 30 * 60 * 1000),
+          url: 'https://facebook.com/post/coimbatore_flood',
+          metrics: { likes: 789, shares: 345, comments: 189 }
+        },
+        {
+          id: 'tn-fb-2',
+          platform: 'facebook',
+          content: `Flood-affected families in Cuddalore need immediate food supplies. 200+ families in Chidambaram and Kattumannarkoil areas without food. Volunteers needed for distribution. #CuddaloreRelief #TamilNadu`,
+          author: 'Cuddalore Relief Group',
+          location: 'Cuddalore, Tamil Nadu, India',
+          timestamp: new Date(Date.now() - 3 * 60 * 60 * 1000),
+          url: 'https://facebook.com/post/cuddalore_food',
+          metrics: { likes: 456, shares: 234, comments: 123 }
+        }
+      ];
+    }
+
     return [
       {
         id: '3',
@@ -293,6 +365,32 @@ class SocialMediaScraper {
   }
 
   private getMockInstagramData(query: string, location?: string): SocialMediaPost[] {
+    // If searching for Tamil Nadu, return Tamil Nadu specific data
+    if (location && location.toLowerCase().includes('tamil nadu')) {
+      return [
+        {
+          id: 'tn-ig-1',
+          platform: 'instagram',
+          content: `Medical camp needed in Tirunelveli district. Dengue cases rising in Nanguneri and Radhapuram blocks. Doctors and nurses urgently needed. 🏥 #Tirunelveli #TamilNadu #Health`,
+          author: 'tn_health_watch',
+          location: 'Tirunelveli, Tamil Nadu, India',
+          timestamp: new Date(Date.now() - 4 * 60 * 60 * 1000),
+          url: 'https://instagram.com/p/tn_medical',
+          metrics: { likes: 456, shares: 123, comments: 78 }
+        },
+        {
+          id: 'tn-ig-2',
+          platform: 'instagram',
+          content: `Emergency blood donation camp in Vellore. CMC Hospital running low on blood stock. All blood types needed, especially O-negative and B-positive. 🩸 #Vellore #TamilNadu #BloodDonation`,
+          author: 'vellore_medical',
+          location: 'Vellore, Tamil Nadu, India',
+          timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000),
+          url: 'https://instagram.com/p/vellore_blood',
+          metrics: { likes: 678, shares: 234, comments: 145 }
+        }
+      ];
+    }
+
     return [
       {
         id: '4',
@@ -308,6 +406,22 @@ class SocialMediaScraper {
   }
 
   private getMockYouTubeData(query: string, location?: string): SocialMediaPost[] {
+    // If searching for Tamil Nadu, return Tamil Nadu specific data
+    if (location && location.toLowerCase().includes('tamil nadu')) {
+      return [
+        {
+          id: 'tn-yt-1',
+          platform: 'youtube',
+          content: `Video report: Drinking water crisis in Salem district. Yamuna river levels low affecting water supply. Need immediate intervention. 💧 #Salem #TamilNadu #WaterCrisis`,
+          author: 'Tamil Nadu News Network',
+          location: 'Salem, Tamil Nadu, India',
+          timestamp: new Date(Date.now() - 5 * 60 * 60 * 1000),
+          url: 'https://youtube.com/watch?v=salem_water',
+          metrics: { likes: 2345, shares: 567, comments: 345 }
+        }
+      ];
+    }
+
     return [
       {
         id: '5',

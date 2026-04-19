@@ -201,6 +201,182 @@ export const mockNeeds: MockNeed[] = [
     created_at: new Date(Date.now() - 18 * 60 * 60 * 1000).toISOString(),
     source: 'manual',
     priority_score: 52
+  },
+  {
+    id: '16',
+    title: 'Water Crisis in Chennai Suburbs',
+    description: 'Severe water shortage reported in Tambaram and Chromepet areas. Residents facing 48-hour water supply disruption. Tanker trucks needed immediately for drinking water distribution.',
+    location: 'Chennai, Tamil Nadu, India',
+    urgency_level: 'critical',
+    tags: ['water', 'emergency', 'chennai', 'tamilnadu'],
+    created_at: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(),
+    source: 'twitter',
+    source_url: 'https://twitter.com/status/tn_water',
+    priority_score: 148
+  },
+  {
+    id: '17',
+    title: 'Flood Warning in Coimbatore',
+    description: 'Heavy rainfall in Coimbatore district causing waterlogging in low-lying areas. Noyyal River water level rising. Residents in Singanallur and Peelamedu advised to move to safer locations.',
+    location: 'Coimbatore, Tamil Nadu, India',
+    urgency_level: 'critical',
+    tags: ['flood', 'rain', 'emergency', 'coimbatore', 'tamilnadu'],
+    created_at: new Date(Date.now() - 30 * 60 * 1000).toISOString(),
+    source: 'facebook',
+    source_url: 'https://facebook.com/post/coimbatore_flood',
+    priority_score: 142
+  },
+  {
+    id: '18',
+    title: 'Power Outage in Madurai',
+    description: 'Major power outage in Madurai city affecting 50,000+ households. Transformer failure in Thiruparankundram area. TANGEDCO working on restoration, expected to take 6-8 hours.',
+    location: 'Madurai, Tamil Nadu, India',
+    urgency_level: 'high',
+    tags: ['power', 'electricity', 'madurai', 'tamilnadu', 'infrastructure'],
+    created_at: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
+    source: 'twitter',
+    source_url: 'https://twitter.com/status/madurai_power',
+    priority_score: 96
+  },
+  {
+    id: '19',
+    title: 'Road Accident on GST Road',
+    description: 'Major accident on Grand Southern Trunk Road near Vandalur. Multiple vehicles involved, traffic completely blocked. Ambulances and police needed. Diversion through Inner Ring Road.',
+    location: 'Chennai, Tamil Nadu, India',
+    urgency_level: 'critical',
+    tags: ['accident', 'traffic', 'emergency', 'chennai', 'tamilnadu'],
+    created_at: new Date(Date.now() - 45 * 60 * 1000).toISOString(),
+    source: 'twitter',
+    source_url: 'https://twitter.com/status/gst_accident',
+    priority_score: 135
+  },
+  {
+    id: '20',
+    title: 'Medical Camp Needed in Tirunelveli',
+    description: 'Rural areas in Tirunelveli district need medical camp. Dengue cases rising in Nanguneri and Radhapuram blocks. Doctors, nurses, and medical supplies urgently needed.',
+    location: 'Tirunelveli, Tamil Nadu, India',
+    urgency_level: 'high',
+    tags: ['medical', 'health', 'dengue', 'tirunelveli', 'tamilnadu'],
+    created_at: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(),
+    source: 'instagram',
+    source_url: 'https://instagram.com/p/tn_medical',
+    priority_score: 89
+  },
+  {
+    id: '21',
+    title: 'Food Distribution for Flood Victims',
+    description: 'Flood-affected families in Cuddalore need immediate food supplies. 200+ families in Chidambaram and Kattumannarkoil areas without food. Volunteers needed for distribution.',
+    location: 'Cuddalore, Tamil Nadu, India',
+    urgency_level: 'high',
+    tags: ['food', 'flood', 'relief', 'cuddalore', 'tamilnadu'],
+    created_at: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString(),
+    source: 'facebook',
+    source_url: 'https://facebook.com/post/cuddalore_food',
+    priority_score: 92
+  },
+  {
+    id: '22',
+    title: 'School Building Damage in Trichy',
+    description: 'Government school building in Trichy damaged due to heavy rains. Students studying in temporary shelter. Need repair work and temporary classroom setup.',
+    location: 'Trichy, Tamil Nadu, India',
+    urgency_level: 'medium',
+    tags: ['education', 'school', 'infrastructure', 'trichy', 'tamilnadu'],
+    created_at: new Date(Date.now() - 12 * 60 * 60 * 1000).toISOString(),
+    source: 'manual',
+    priority_score: 58
+  },
+  {
+    id: '23',
+    title: 'Drinking Water Scarcity in Salem',
+    description: 'Drinking water crisis in Salem district. Yamuna river levels low, affecting water supply to Salem city and surrounding areas. Water tankers and borewell restoration needed.',
+    location: 'Salem, Tamil Nadu, India',
+    urgency_level: 'high',
+    tags: ['water', 'drinking', 'salem', 'tamilnadu', 'infrastructure'],
+    created_at: new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString(),
+    source: 'twitter',
+    source_url: 'https://twitter.com/status/salem_water',
+    priority_score: 87
+  },
+  {
+    id: '24',
+    title: 'Tree Removal Needed in Erode',
+    description: 'Multiple trees fell on roads in Erode due to heavy winds. Traffic disrupted in Bhavani and Gobichettipalayam areas. Need tree cutting service and traffic management.',
+    location: 'Erode, Tamil Nadu, India',
+    urgency_level: 'medium',
+    tags: ['tree', 'traffic', 'erode', 'tamilnadu', 'infrastructure'],
+    created_at: new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString(),
+    source: 'manual',
+    priority_score: 54
+  },
+  {
+    id: '25',
+    title: 'Beach Cleanup in Rameswaram',
+    description: 'Plastic waste accumulation on Rameswaram beach affecting marine life. Need volunteers for cleanup drive and waste management. Weekend cleanup planned.',
+    location: 'Rameswaram, Tamil Nadu, India',
+    urgency_level: 'low',
+    tags: ['environment', 'beach', 'cleanup', 'rameswaram', 'tamilnadu'],
+    created_at: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
+    source: 'facebook',
+    source_url: 'https://facebook.com/post/rameswaram_beach',
+    priority_score: 32
+  },
+  {
+    id: '26',
+    title: 'Elderly Care Needed in Thanjavur',
+    description: 'Elderly residents in Thanjavur need assistance during heat wave. Need volunteers to check on seniors, provide drinking water, and help with medical emergencies.',
+    location: 'Thanjavur, Tamil Nadu, India',
+    urgency_level: 'high',
+    tags: ['elderly', 'heat', 'volunteers', 'thanjavur', 'tamilnadu'],
+    created_at: new Date(Date.now() - 8 * 60 * 60 * 1000).toISOString(),
+    source: 'manual',
+    priority_score: 78
+  },
+  {
+    id: '27',
+    title: 'Cyclone Preparation in Nagapattinam',
+    description: 'Cyclone warning for Nagapattinam coast. Fishermen advised not to venture into sea. Need evacuation assistance for coastal villages. Emergency shelters being set up.',
+    location: 'Nagapattinam, Tamil Nadu, India',
+    urgency_level: 'critical',
+    tags: ['cyclone', 'emergency', 'evacuation', 'nagapattinam', 'tamilnadu'],
+    created_at: new Date(Date.now() - 15 * 60 * 1000).toISOString(),
+    source: 'twitter',
+    source_url: 'https://twitter.com/status/nagapattinam_cyclone',
+    priority_score: 138
+  },
+  {
+    id: '28',
+    title: 'Blood Donation Camp in Vellore',
+    description: 'Emergency blood donation camp needed in Vellore. CMC Hospital running low on blood stock. All blood types needed, especially O-negative and B-positive.',
+    location: 'Vellore, Tamil Nadu, India',
+    urgency_level: 'high',
+    tags: ['blood', 'donation', 'medical', 'vellore', 'tamilnadu'],
+    created_at: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
+    source: 'instagram',
+    source_url: 'https://instagram.com/p/vellore_blood',
+    priority_score: 91
+  },
+  {
+    id: '29',
+    title: 'Animal Rescue in Kanyakumari',
+    description: 'Stray animals affected by heavy rains in Kanyakumari. Need animal rescue volunteers, food supplies for animals, and temporary shelter setup.',
+    location: 'Kanyakumari, Tamil Nadu, India',
+    urgency_level: 'medium',
+    tags: ['animals', 'rescue', 'rain', 'kanyakumari', 'tamilnadu'],
+    created_at: new Date(Date.now() - 10 * 60 * 60 * 1000).toISOString(),
+    source: 'manual',
+    priority_score: 51
+  },
+  {
+    id: '30',
+    title: 'Temple Renovation in Kumbakonam',
+    description: 'Historic temple in Kumbakonam needs renovation. Heritage site damaged by rains. Need masons, architects, and funding for restoration work.',
+    location: 'Kumbakonam, Tamil Nadu, India',
+    urgency_level: 'low',
+    tags: ['heritage', 'temple', 'renovation', 'kumbakonam', 'tamilnadu'],
+    created_at: new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString(),
+    source: 'facebook',
+    source_url: 'https://facebook.com/post/kumbakonam_temple',
+    priority_score: 28
   }
 ];
 
@@ -254,6 +430,56 @@ export const mockVolunteers = [
     availability: 'flexible',
     location: 'Seattle',
     created_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString()
+  },
+  {
+    id: 'v6',
+    user_id: 'user-6',
+    name: 'Rajesh Kumar',
+    email: 'rajesh@example.com',
+    skills: ['medical', 'first aid', 'tamil'],
+    availability: 'weekends',
+    location: 'Chennai, Tamil Nadu, India',
+    created_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString()
+  },
+  {
+    id: 'v7',
+    user_id: 'user-7',
+    name: 'Priya Lakshmi',
+    email: 'priya@example.com',
+    skills: ['teaching', 'tutoring', 'tamil', 'childcare'],
+    availability: 'evenings',
+    location: 'Coimbatore, Tamil Nadu, India',
+    created_at: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString()
+  },
+  {
+    id: 'v8',
+    user_id: 'user-8',
+    name: 'Suresh Pandian',
+    email: 'suresh@example.com',
+    skills: ['construction', 'repair', 'plumbing', 'tamil'],
+    availability: 'flexible',
+    location: 'Madurai, Tamil Nadu, India',
+    created_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString()
+  },
+  {
+    id: 'v9',
+    user_id: 'user-9',
+    name: 'Anand Ramanathan',
+    email: 'anand@example.com',
+    skills: ['cooking', 'food distribution', 'tamil'],
+    availability: 'weekdays',
+    location: 'Trichy, Tamil Nadu, India',
+    created_at: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString()
+  },
+  {
+    id: 'v10',
+    user_id: 'user-10',
+    name: 'Kavitha Subramanian',
+    email: 'kavitha@example.com',
+    skills: ['driving', 'logistics', 'delivery', 'tamil'],
+    availability: 'flexible',
+    location: 'Salem, Tamil Nadu, India',
+    created_at: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000).toISOString()
   }
 ];
 
@@ -281,6 +507,30 @@ export const mockNGOs = [
     location: 'London',
     role: 'ngo',
     created_at: new Date(Date.now() - 270 * 24 * 60 * 60 * 1000).toISOString()
+  },
+  {
+    id: 'ngo-4',
+    name: 'Tamil Nadu Disaster Relief',
+    email: 'info@tndr.org',
+    location: 'Chennai, Tamil Nadu, India',
+    role: 'ngo',
+    created_at: new Date(Date.now() - 200 * 24 * 60 * 60 * 1000).toISOString()
+  },
+  {
+    id: 'ngo-5',
+    name: 'Coimbatore Social Welfare',
+    email: 'contact@csw.org',
+    location: 'Coimbatore, Tamil Nadu, India',
+    role: 'ngo',
+    created_at: new Date(Date.now() - 150 * 24 * 60 * 60 * 1000).toISOString()
+  },
+  {
+    id: 'ngo-6',
+    name: 'Madurai Community Care',
+    email: 'admin@mcc.org',
+    location: 'Madurai, Tamil Nadu, India',
+    role: 'ngo',
+    created_at: new Date(Date.now() - 100 * 24 * 60 * 60 * 1000).toISOString()
   }
 ];
 

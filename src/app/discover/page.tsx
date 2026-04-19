@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from '@/components/organisms/Navbar';
 import { Button } from '@/components/atoms/Button';
 import { Search, MapPin, Loader2, AlertCircle, Globe, Share2, Image, Video } from 'lucide-react';
@@ -13,6 +13,28 @@ export default function DiscoverPage() {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<ScrapedNeed[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [hasSearched, setHasSearched] = useState(false);
+
+  // Auto-search on page load to demonstrate the feature
+  useEffect(() => {
+    const autoSearch = async () => {
+      setQuery('emergency');
+      setLocation('');
+      setLoading(true);
+      try {
+        const posts = await socialMediaScraper.scrapeAllPlatforms('emergency');
+        const needs = socialMediaScraper.convertPostsToNeeds(posts);
+        setResults(needs);
+        setHasSearched(true);
+      } catch (err: any) {
+        setError(err.message || 'Failed to search social media. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    autoSearch();
+  }, []);
 
   const handleSearch = async () => {
     if (!query.trim()) {
@@ -23,6 +45,7 @@ export default function DiscoverPage() {
     setLoading(true);
     setError(null);
     setResults([]);
+    setHasSearched(true);
 
     try {
       const posts = await socialMediaScraper.scrapeAllPlatforms(query, location || undefined);
@@ -75,6 +98,70 @@ export default function DiscoverPage() {
           <p className="text-black/50 font-bold uppercase tracking-widest text-sm max-w-2xl leading-relaxed">
             Search for community needs and problems from social media platforms. Enter a problem type and location to find relevant issues posted by people in real-time.
           </p>
+        </div>
+
+        {/* Quick Test Buttons */}
+        <div className="mb-6 flex flex-wrap gap-3">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => {
+              setQuery('emergency');
+              setLocation('Tamil Nadu, India');
+              handleSearch();
+            }}
+            className="gap-2 bg-blue-50 border-blue-600"
+          >
+            🇮🇳 Tamil Nadu, India
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => {
+              setQuery('water shortage');
+              setLocation('Downtown');
+              handleSearch();
+            }}
+            className="gap-2"
+          >
+            💧 Water Crisis
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => {
+              setQuery('power outage');
+              setLocation('');
+              handleSearch();
+            }}
+            className="gap-2"
+          >
+            ⚡ Power Outage
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => {
+              setQuery('flood');
+              setLocation('');
+              handleSearch();
+            }}
+            className="gap-2"
+          >
+            🌊 Flooding
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => {
+              setQuery('emergency');
+              setLocation('');
+              handleSearch();
+            }}
+            className="gap-2"
+          >
+            🚨 Emergency
+          </Button>
         </div>
 
         {/* Search Form */}
@@ -167,6 +254,38 @@ export default function DiscoverPage() {
               </p>
             </div>
 
+            {/* Area Summary */}
+            <div className="mb-6 p-4 border-2 border-black/10 bg-slate-50">
+              <h3 className="font-black text-xs uppercase tracking-widest mb-3">Areas Found:</h3>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {Array.from(new Set(results.map(r => r.location))).map((location, idx) => (
+                  <span
+                    key={idx}
+                    className="px-3 py-1 border-2 border-black bg-white text-xs font-black uppercase tracking-widest flex items-center gap-2"
+                  >
+                    <MapPin className="w-3 h-3" />
+                    {location}
+                  </span>
+                ))}
+              </div>
+
+              <h3 className="font-black text-xs uppercase tracking-widest mb-3">Urgency Breakdown:</h3>
+              <div className="flex flex-wrap gap-2">
+                {['critical', 'high', 'medium', 'low'].map(urgency => {
+                  const count = results.filter(r => r.urgency_level === urgency).length;
+                  if (count === 0) return null;
+                  return (
+                    <span
+                      key={urgency}
+                      className={`px-3 py-1 border-2 border-black ${getUrgencyColor(urgency)} text-xs font-black uppercase tracking-widest`}
+                    >
+                      {urgency}: {count}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+
             <div className="space-y-4">
               {results.map((need, index) => (
                 <div
@@ -222,7 +341,7 @@ export default function DiscoverPage() {
           </div>
         )}
 
-        {results.length === 0 && !loading && !error && (
+        {results.length === 0 && !loading && !error && hasSearched && (
           <div className="border-2 border-dashed border-black/10 p-20 text-center flex flex-col items-center">
             <div className="flex gap-4 mb-6">
               <Globe className="w-12 h-12 text-black/20" />
