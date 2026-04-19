@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #2563EB;
+  --color-background: #FFFFFF;
+  --color-foreground: #000000;
+  
+  --border-width-modular: 2px;
+  --radius-none: 0;
+}
+
+:root {
+  --background: #FFFFFF;
+  --foreground: #000000;
+  --brand: #2563EB;
+  --border-modular: 2px solid #000000;
+}
+
+* {
+  border-color: #000000;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Modular Grid System */
+.modular-grid {
+  display: grid;
+  border: var(--border-modular);
+}
+
+.modular-cell {
+  border: var(--border-modular);
+  margin: -1px; /* Overlap borders for single-line effect */
+}
+
+/* Custom Utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
