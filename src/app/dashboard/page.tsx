@@ -53,8 +53,8 @@ export default function DashboardPage() {
       <div className="max-w-[1550px] mx-auto px-6 py-12">
         <header className="mb-12 flex items-end justify-between">
            <div>
-              <h1 className="text-6xl font-black tracking-tighter italic mb-2">DASHBOARD</h1>
-              <p className="text-black/50 font-bold uppercase tracking-widest text-xs">Project Status & Resource Management</p>
+              <h1 className="text-6xl font-black tracking-tighter italic mb-2">Dashboard</h1>
+              <p className="text-black/50 font-bold uppercase tracking-widest text-xs">Overview of community needs and volunteer activity</p>
            </div>
            {loading && <Loader2 className="w-6 h-6 animate-spin text-brand" />}
         </header>
@@ -69,30 +69,31 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-0 mb-12 border-2 border-black">
            <div className="border-r-2 border-black last:border-r-0">
              <StatCard 
-               label="Total Needs" 
+               label="Active Needs" 
                value={loading ? "..." : metrics.totalNeeds.toString().padStart(2, '0')} 
-               subtext="Synchronized live" 
+               subtext="Community problems" 
              />
            </div>
            <div className="border-r-2 border-black last:border-r-0">
              <StatCard 
-               label="Active Volunteers" 
+               label="Volunteers" 
                value={loading ? "..." : metrics.activeVolunteers.toString().padStart(2, '0')} 
-               subtext="Verified responders" 
+               subtext="Ready to help" 
              />
            </div>
            <div className="border-r-2 border-black last:border-r-0">
              <StatCard 
-               label="Urgent Cases" 
+               label="Urgent Needs" 
                value={loading ? "..." : metrics.urgentCases.toString().padStart(2, '0')} 
                variant="urgent" 
+               subtext="Immediate attention"
              />
            </div>
            <div className="border-r-2 border-black last:border-r-0">
              <StatCard 
-               label="Match Rate" 
+               label="Success Rate" 
                value={loading ? "..." : metrics.matchRate} 
-               subtext="AI-optimized" 
+               subtext="Problems solved" 
              />
            </div>
         </div>
@@ -103,7 +104,7 @@ export default function DashboardPage() {
               {/* Heatmap Section */}
               <div className="border-2 border-black relative h-[500px]">
                  <div className="absolute top-4 left-4 z-10">
-                    <Badge variant="primary">Urgency Heatmap</Badge>
+                    <Badge variant="primary">Needs by Location</Badge>
                  </div>
                  <UrgencyHeatmap />
               </div>
@@ -111,14 +112,14 @@ export default function DashboardPage() {
               {/* Activity Feed Placeholder */}
               <div className="border-2 border-black p-8">
                  <div className="flex items-center justify-between mb-8">
-                    <h3 className="text-2xl font-black italic uppercase tracking-tighter">System Feed</h3>
+                    <h3 className="text-2xl font-black italic uppercase tracking-tighter">Recent Activity</h3>
                     <div className="h-[2px] flex-1 bg-black/10 mx-6"></div>
                     <ArrowRight className="w-6 h-6" />
                  </div>
-                 
+
                  <div className="flex flex-col items-center justify-center py-12 text-black/20">
                     <Clock className="w-12 h-12 mb-4" />
-                    <p className="font-black text-xs uppercase tracking-[0.2em]">Real-time activity syncing...</p>
+                    <p className="font-black text-xs uppercase tracking-[0.2em]">Loading recent activity...</p>
                  </div>
               </div>
            </div>
@@ -130,11 +131,11 @@ export default function DashboardPage() {
               </div>
               
               <div className="bg-black text-white p-8 border-2 border-black">
-                 <h4 className="text-xl font-black italic mb-4 uppercase">System Alerts</h4>
+                 <h4 className="text-xl font-black italic mb-4 uppercase">Notifications</h4>
                  <div className="space-y-4">
                     <div className="border-l-4 border-blue-500 pl-4 py-1">
-                       <p className="text-[10px] font-black text-blue-400 uppercase tracking-widest mb-1">Update</p>
-                       <p className="text-sm font-bold leading-tight">Supabase connection established. RLS policies active.</p>
+                       <p className="text-[10px] font-black text-blue-400 uppercase tracking-widest mb-1">System</p>
+                       <p className="text-sm font-bold leading-tight">Database connected successfully. Ready to receive new needs.</p>
                     </div>
                  </div>
               </div>

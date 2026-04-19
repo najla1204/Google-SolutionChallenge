@@ -51,8 +51,8 @@ export default function LoginPage() {
           <div className="bg-brand p-2 border-2 border-black mb-4">
             <Shield className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-4xl font-black italic tracking-tighter uppercase">Clearance Login</h1>
-          <p className="text-[10px] font-bold text-black/40 uppercase tracking-widest mt-2">Resume Impact Operations</p>
+          <h1 className="text-4xl font-black italic tracking-tighter uppercase">Welcome Back</h1>
+          <p className="text-[10px] font-bold text-black/40 uppercase tracking-widest mt-2">Sign in to continue helping your community</p>
         </div>
 
         {error && (
@@ -66,11 +66,11 @@ export default function LoginPage() {
             <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-black/30" />
             <input 
               type="email" 
-              placeholder="EMAIL ADDRESS" 
+              placeholder="Enter your email" 
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full border-2 border-black p-4 pl-12 text-xs font-black uppercase tracking-widest focus:bg-slate-50 outline-none"
+              className="w-full border-2 border-black p-4 pl-12 text-sm font-medium tracking-widest focus:bg-slate-50 outline-none"
             />
           </div>
 
@@ -78,21 +78,21 @@ export default function LoginPage() {
             <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-black/30" />
             <input 
               type="password" 
-              placeholder="PASSWORD" 
+              placeholder="Enter your password" 
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full border-2 border-black p-4 pl-12 text-xs font-black uppercase tracking-widest focus:bg-slate-50 outline-none"
+              className="w-full border-2 border-black p-4 pl-12 text-sm font-medium tracking-widest focus:bg-slate-50 outline-none"
             />
           </div>
 
           <Button type="submit" disabled={loading} className="w-full h-14 text-sm gap-3">
-             {loading ? 'AUTHENTICATING...' : 'ACCESS SYSTEM'}
+             {loading ? 'Signing in...' : 'Sign In'}
           </Button>
         </form>
 
         <p className="text-center mt-8 text-[10px] font-bold text-black/40 uppercase tracking-widest">
-          New to the network? <Link href="/auth/signup" className="text-brand underline">Create account</Link>
+          New here? <Link href="/auth/signup" className="text-brand underline">Create an account</Link>
         </p>
       </div>
     </main>

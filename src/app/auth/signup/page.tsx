@@ -49,8 +49,8 @@ export default function SignupPage() {
           <div className="bg-brand p-2 border-2 border-black mb-4">
             <Shield className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-4xl font-black italic tracking-tighter uppercase">Join ImpactFlow</h1>
-          <p className="text-[10px] font-bold text-black/40 uppercase tracking-widest mt-2">Initialize Security Clearance</p>
+          <h1 className="text-4xl font-black italic tracking-tighter uppercase">Create Account</h1>
+          <p className="text-[10px] font-bold text-black/40 uppercase tracking-widest mt-2">Join the community and start making a difference</p>
         </div>
 
         {error && (
@@ -64,11 +64,11 @@ export default function SignupPage() {
             <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-black/30" />
             <input 
               type="text" 
-              placeholder="FULL NAME" 
+              placeholder="Enter your full name" 
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full border-2 border-black p-4 pl-12 text-xs font-black uppercase tracking-widest focus:bg-slate-50 outline-none"
+              className="w-full border-2 border-black p-4 pl-12 text-sm font-medium tracking-widest focus:bg-slate-50 outline-none"
             />
           </div>
 
@@ -76,11 +76,11 @@ export default function SignupPage() {
             <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-black/30" />
             <input 
               type="email" 
-              placeholder="EMAIL ADDRESS" 
+              placeholder="Enter your email" 
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full border-2 border-black p-4 pl-12 text-xs font-black uppercase tracking-widest focus:bg-slate-50 outline-none"
+              className="w-full border-2 border-black p-4 pl-12 text-sm font-medium tracking-widest focus:bg-slate-50 outline-none"
             />
           </div>
 
@@ -88,11 +88,11 @@ export default function SignupPage() {
             <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-black/30" />
             <input 
               type="password" 
-              placeholder="PASSWORD" 
+              placeholder="Create a password" 
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full border-2 border-black p-4 pl-12 text-xs font-black uppercase tracking-widest focus:bg-slate-50 outline-none"
+              className="w-full border-2 border-black p-4 pl-12 text-sm font-medium tracking-widest focus:bg-slate-50 outline-none"
             />
           </div>
 
@@ -102,24 +102,24 @@ export default function SignupPage() {
               onClick={() => setRole('volunteer')}
               className={`flex-1 p-3 text-[10px] font-black uppercase tracking-widest transition-all ${role === 'volunteer' ? 'bg-black text-white' : 'bg-white text-black'}`}
             >
-              VOLUNTEER
+I want to volunteer
             </button>
             <button 
               type="button"
               onClick={() => setRole('ngo')}
               className={`flex-1 p-3 text-[10px] font-black uppercase tracking-widest transition-all ${role === 'ngo' ? 'bg-black text-white' : 'bg-white text-black'}`}
             >
-              NGO / COORDINATOR
+I represent an organization
             </button>
           </div>
 
           <Button type="submit" disabled={loading} className="w-full h-14 text-sm gap-3">
-             {loading ? 'PROCESSING...' : 'INITIALIZE ACCOUNT'}
+             {loading ? 'Creating account...' : 'Create Account'}
           </Button>
         </form>
 
         <p className="text-center mt-8 text-[10px] font-bold text-black/40 uppercase tracking-widest">
-          Already have clearance? <Link href="/auth/login" className="text-brand underline">Login here</Link>
+          Already have an account? <Link href="/auth/login" className="text-brand underline">Sign in here</Link>
         </p>
       </div>
     </main>

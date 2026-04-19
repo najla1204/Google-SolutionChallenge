@@ -31,6 +31,7 @@ export const Navbar = () => {
   const navLinks = [
     { name: 'DASHBOARD', href: '/dashboard' },
     { name: 'URGENT NEEDS', href: '/needs' },
+    { name: 'DISCOVER', href: '/discover' },
     { name: 'VOLUNTEERS', href: '/volunteers' },
   ];
 

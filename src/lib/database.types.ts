@@ -19,6 +19,9 @@ export type Database = {
           tags: string[] | null
           title: string
           urgency_level: string | null
+          source: string | null
+          source_url: string | null
+          priority_score: number | null
         }
         Insert: {
           created_at?: string | null
@@ -29,6 +32,9 @@ export type Database = {
           tags?: string[] | null
           title: string
           urgency_level?: string | null
+          source?: string | null
+          source_url?: string | null
+          priority_score?: number | null
         }
         Update: {
           created_at?: string | null
@@ -39,6 +45,9 @@ export type Database = {
           tags?: string[] | null
           title?: string
           urgency_level?: string | null
+          source?: string | null
+          source_url?: string | null
+          priority_score?: number | null
         }
         Relationships: [
           {
