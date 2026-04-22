@@ -5,14 +5,17 @@ import { Button } from '@/components/atoms/Button';
 import { Badge } from '@/components/atoms/Badge';
 import { Upload, FileText, Scan, Loader2, CheckCircle2 } from 'lucide-react';
 import { NeedService } from '@/services/needs';
+import { useRouter } from 'next/navigation';
 
 export const SmartScanner = () => {
+  const router = useRouter();
   const [status, setStatus] = useState<'idle' | 'uploading' | 'processing' | 'done'>('idle');
   const [fileName, setFileName] = useState<string | null>(null);
   const [extractedData, setExtractedData] = useState<any>(null);
 
   const handleSimulateScan = () => {
     setStatus('uploading');
+    setFileName("emergency_report_042.pdf"); // Pre-filling name for demo
     setTimeout(() => {
       setStatus('processing');
       setTimeout(() => {
@@ -29,13 +32,13 @@ export const SmartScanner = () => {
 
   const handlePushToFeed = async () => {
     if (!extractedData) return;
-    setStatus('uploading'); // reusing status for loading
+    setStatus('uploading'); 
     try {
         await NeedService.create(extractedData);
         setStatus('idle');
         setFileName(null);
         setExtractedData(null);
-        alert('Need successfully pushed to Supabase live feed!');
+        router.push('/needs');
     } catch (error) {
         console.error('Failed to push data:', error);
         setStatus('done');

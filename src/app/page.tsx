@@ -14,6 +14,38 @@ export default function Home() {
       </section>
       <SmartScanner />
       
+      {/* How It Works Section */}
+      <section className="py-24 px-6 bg-white border-b-2 border-black">
+        <div className="max-w-[1550px] mx-auto">
+          <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-4">
+             <div className="max-w-2xl">
+                <h2 className="text-6xl font-black italic tracking-tighter uppercase mb-6">How <span className="text-brand">ImpactFlow</span> Works</h2>
+                <p className="text-lg font-bold uppercase text-black/50 tracking-tight">Our end-to-end community resilience workflow, designed for immediate response and long-term recovery.</p>
+             </div>
+             <div className="hidden md:block h-0.5 flex-1 bg-black/10 mb-4 mx-8"></div>
+             <div className="text-[10px] font-black uppercase tracking-[0.2em] text-black/30 w-32 pb-4">Protocol v2.1</div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-2 border-black">
+             <div className="p-10 border-b-2 md:border-b-0 md:border-r-2 border-black group hover:bg-slate-50 transition-colors">
+                <div className="w-12 h-12 bg-black text-white flex items-center justify-center font-black text-xl mb-8 group-hover:bg-brand transition-colors">01</div>
+                <h3 className="text-2xl font-black uppercase mb-4 italic tracking-tight">Discovery</h3>
+                <p className="font-bold text-black/60 leading-snug">Upload paper reports or live updates. Our AI harvests critical data, identifying urgent community needs automatically.</p>
+             </div>
+             <div className="p-10 border-b-2 md:border-b-0 md:border-r-2 border-black group hover:bg-slate-50 transition-colors">
+                <div className="w-12 h-12 bg-black text-white flex items-center justify-center font-black text-xl mb-8 group-hover:bg-brand transition-colors">02</div>
+                <h3 className="text-2xl font-black uppercase mb-4 italic tracking-tight">Matching</h3>
+                <p className="font-bold text-black/60 leading-snug">The system connects identified needs with verified volunteers and resources based on skills, location, and priority.</p>
+             </div>
+             <div className="p-10 group hover:bg-slate-50 transition-colors">
+                <div className="w-12 h-12 bg-black text-white flex items-center justify-center font-black text-xl mb-8 group-hover:bg-brand transition-colors">03</div>
+                <h3 className="text-2xl font-black uppercase mb-4 italic tracking-tight">Impact</h3>
+                <p className="font-bold text-black/60 leading-snug">Track real-time progress and success rates. Every action contributes to a transparent, data-driven map of community recovery.</p>
+             </div>
+          </div>
+        </div>
+      </section>
+      
       {/* Footer */}
       <footer className="w-full py-12 px-6 border-t-2 border-black bg-white">
         <div className="max-w-[1550px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8">

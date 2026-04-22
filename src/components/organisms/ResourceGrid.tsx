@@ -26,6 +26,7 @@ export const ResourceGrid = ({ showTitle = true }: { showTitle?: boolean }) => {
           {needs.slice(0, 4).map((need) => (
             <NeedCard 
                key={need.id}
+               id={need.id}
                title={need.title}
                location={need.location}
                urgency={need.urgency}

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/atoms/Button';
-import { Shield, Mail, Lock, User, MapPin } from 'lucide-react';
+import { Shield, Mail, Lock, User, MapPin, Eye, EyeOff } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -14,6 +14,7 @@ export default function SignupPage() {
   const [role, setRole] = useState<'ngo' | 'volunteer'>('volunteer');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
   const handleSignup = async (e: React.FormEvent) => {
@@ -33,10 +34,31 @@ export default function SignupPage() {
       if (authError) throw authError;
 
       if (authData.user) {
+        // Explicitly create the profile record to ensure it exists in the public schema
+        // This is a safety measure in case the DB trigger is not active
+        const profileData = {
+          id: authData.user.id,
+          email: email,
+          name: name,
+          role: role,
+          created_at: new Date().toISOString()
+        };
+        
+        const { error: profileError } = await (supabase.from('profiles') as any).insert(profileData);
+        
+        if (profileError) {
+          console.warn('Profile creation error (might be duplicate if trigger is active):', profileError);
+        }
+
         router.push(role === 'ngo' ? '/dashboard' : '/needs');
       }
     } catch (err: any) {
-      setError(err.message);
+      if (err.message === 'Failed to fetch' || err.name === 'TypeError') {
+        setError('Network Connection Error: Please check your internet connection or if Supabase is reachable.');
+        console.error('Signup fetch failure:', err);
+      } else {
+        setError(err.message || 'An unexpected error occurred during signup');
+      }
     } finally {
       setLoading(false);
     }
@@ -87,13 +109,20 @@ export default function SignupPage() {
           <div className="relative">
             <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-black/30" />
             <input 
-              type="password" 
+              type={showPassword ? 'text' : 'password'} 
               placeholder="Create a password" 
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full border-2 border-black p-4 pl-12 text-sm font-medium tracking-widest focus:bg-slate-50 outline-none"
+              className="w-full border-2 border-black p-4 pl-12 pr-12 text-sm font-medium tracking-widest focus:bg-slate-50 outline-none"
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-black/30 hover:text-black transition-colors"
+            >
+              {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+            </button>
           </div>
 
           <div className="flex border-2 border-black overflow-hidden">

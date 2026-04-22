@@ -20,8 +20,8 @@ export const VolunteerService = {
       .select('*, profiles(name, email)')
       .order('created_at', { ascending: false });
     
-    if (error) {
-      console.error('Error fetching volunteers from database, falling back to mock data:', error);
+    if (error || !data || data.length === 0) {
+      if (error) console.error('Error fetching volunteers from database, falling back to mock data:', error);
       return mockVolunteers as any[];
     }
     
@@ -120,14 +120,14 @@ export const VolunteerService = {
       }) as any[];
     }
 
-    return data.filter(vol => {
+    return (data as any[]).filter(vol => {
       const locationMatch = vol.location?.toLowerCase() === needLocation.toLowerCase();
-      const skillMatch = vol.skills?.some(skill => skillsNeeded.includes(skill));
+      const skillMatch = vol.skills?.some((skill: string) => skillsNeeded.includes(skill));
       return locationMatch || skillMatch;
     }).sort((a, b) => {
       // Prioritize double matches
-      const scoreA = (a.location === needLocation ? 1 : 0) + (a.skills?.filter(s => skillsNeeded.includes(s)).length || 0);
-      const scoreB = (b.location === needLocation ? 1 : 0) + (b.skills?.filter(s => skillsNeeded.includes(s)).length || 0);
+      const scoreA = (a.location === needLocation ? 1 : 0) + (a.skills?.filter((s: string) => skillsNeeded.includes(s)).length || 0);
+      const scoreB = (b.location === needLocation ? 1 : 0) + (b.skills?.filter((s: string) => skillsNeeded.includes(s)).length || 0);
       return scoreB - scoreA;
     });
   }

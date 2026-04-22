@@ -2,7 +2,7 @@
 
 ## Overview
 
-ImpactFlow now includes social media scraping capabilities to automatically discover community needs and problems from platforms like Twitter, Facebook, Instagram, and YouTube. This feature helps identify urgent situations by analyzing public posts and comments.
+ImpactFlow now includes social media scraping capabilities to automatically discover community needs and problems from YouTube. This feature helps identify urgent situations by analyzing video descriptions and comments.
 
 ## Current Implementation
 
@@ -17,7 +17,7 @@ The current implementation uses **mock data** for demonstration purposes. To ena
 ### 1. **Social Media Discovery Page** (`/discover`)
 - Search by problem type/keyword (e.g., "water shortage", "power outage")
 - Filter by location/area
-- Results from Twitter, Facebook, Instagram, and YouTube
+- Results from YouTube
 - Automatic urgency detection (Critical, High, Medium, Low)
 - AI-based priority scoring
 - Results sorted by priority (highest first)
@@ -43,65 +43,7 @@ The system automatically calculates priority scores based on:
 
 ## Setting Up Real Social Media APIs
 
-### Twitter/X API
 
-1. Go to [Twitter Developer Portal](https://developer.twitter.com/)
-2. Create a developer account
-3. Create a new project and app
-4. Get your API Key, API Secret, and Bearer Token
-5. Add to environment variables:
-   ```env
-   TWITTER_API_KEY=your_api_key
-   TWITTER_API_SECRET=your_api_secret
-   TWITTER_BEARER_TOKEN=your_bearer_token
-   ```
-
-**Example API Call:**
-```typescript
-const response = await fetch('https://api.twitter.com/2/tweets/search/recent', {
-  headers: {
-    'Authorization': `Bearer ${process.env.TWITTER_BEARER_TOKEN}`
-  },
-  params: {
-    query: 'water shortage help',
-    'tweet.fields': 'created_at,public_metrics,geo'
-  }
-});
-```
-
-### Facebook Graph API
-
-1. Go to [Facebook Developers](https://developers.facebook.com/)
-2. Create a new app
-3. Add Facebook Login product
-4. Get your App ID and App Secret
-5. Add to environment variables:
-   ```env
-   FACEBOOK_APP_ID=your_app_id
-   FACEBOOK_APP_SECRET=your_app_secret
-   FACEBOOK_ACCESS_TOKEN=your_access_token
-   ```
-
-**Example API Call:**
-```typescript
-const response = await fetch(`https://graph.facebook.com/v18.0/search?q=${query}&type=post&access_token=${token}`);
-```
-
-### Instagram Graph API
-
-1. Use the same Facebook app
-2. Add Instagram product
-3. Get Instagram Business Account ID
-4. Add to environment variables:
-   ```env
-   INSTAGRAM_BUSINESS_ID=your_business_id
-   INSTAGRAM_ACCESS_TOKEN=your_access_token
-   ```
-
-**Example API Call:**
-```typescript
-const response = await fetch(`https://graph.facebook.com/v18.0/ig_hashtag/search?user_id=${businessId}&q=${query}`);
-```
 
 ### YouTube Data API v3
 
@@ -151,23 +93,12 @@ CREATE INDEX idx_needs_source ON needs(source);
 To replace mock data with real API calls, update `src/services/socialMediaScraper.ts`:
 
 ```typescript
-async scrapeTwitter(query: string, location?: string): Promise<SocialMediaPost[]> {
-  const response = await fetch('https://api.twitter.com/2/tweets/search/recent', {
-    method: 'GET',
-    headers: {
-      'Authorization': `Bearer ${process.env.TWITTER_BEARER_TOKEN}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      query: `${query} ${location || ''} -is:retweet`,
-      max_results: 100,
-      'tweet.fields': 'created_at,public_metrics,geo,author_id'
-    })
-  });
-  
+async scrapeYouTube(query: string, location?: string): Promise<SocialMediaPost[]> {
+  const response = await fetch(`/api/social/search?platform=youtube&query=${encodeURIComponent(query)}&location=${encodeURIComponent(location || '')}`);
   const data = await response.json();
-  // Transform Twitter data to SocialMediaPost format
-  return this.transformTwitterData(data.data);
+  
+  // Transform YouTube data to SocialMediaPost format
+  return this.transformYouTubeData(data.items);
 }
 ```
 

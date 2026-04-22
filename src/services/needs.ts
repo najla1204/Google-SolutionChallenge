@@ -20,8 +20,8 @@ export const NeedService = {
       .select('*')
       .order('created_at', { ascending: false });
     
-    if (error) {
-      console.error('Error fetching needs from database, falling back to mock data:', error);
+    if (error || !data || data.length === 0) {
+      if (error) console.error('Error fetching needs from database, falling back to mock data:', error);
       return mockNeeds as Need[];
     }
     

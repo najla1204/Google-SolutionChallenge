@@ -178,7 +178,7 @@ Each mock need includes:
 - `urgency_level`: critical, high, medium, low
 - `tags`: Array of relevant tags
 - `created_at`: Timestamp
-- `source`: twitter, facebook, instagram, youtube, manual
+- `source`: youtube, manual
 - `source_url`: Link to original post (if from social media)
 - `priority_score`: AI-calculated priority (0-200)
 - `ngo_id`: Associated NGO (optional)

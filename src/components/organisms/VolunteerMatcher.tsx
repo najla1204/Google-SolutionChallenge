@@ -47,7 +47,7 @@ export const VolunteerMatcher = () => {
     
     setLoading(true);
     try {
-      const { error } = await supabase.from('tasks').insert({
+      const { error } = await (supabase.from('tasks') as any).insert({
         need_id: selectedNeed.id,
         volunteer_id: volunteerId,
         status: 'assigned'
@@ -134,7 +134,7 @@ export const VolunteerMatcher = () => {
               <div className="space-y-4">
                  {matches.length > 0 ? matches.map((vol, idx) => (
                     <div key={vol.id} className="border-2 border-black p-4 bg-white relative">
-                       <div className={`absolute top-[-10px] right-[-10px] text-[8px] font-black px-2 py-0.5 border-2 border-black ${idx === 0 ? 'bg-brand text-white rotate-3' : 'bg-white text-black -rotate-2'}`}>
+                       <div className={`absolute top-[-10px] right-[-10px] text-[8px] font-black px-2 py-0.5 border-2 border-black ${idx === 0 ? 'bg-[#0f172a] text-white rotate-3' : 'bg-[#171717] text-white -rotate-2'}`}>
                           {idx === 0 ? 'BEST MATCH' : 'ALTERNATIVE'}
                        </div>
                        

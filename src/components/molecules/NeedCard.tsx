@@ -2,8 +2,10 @@ import React from 'react';
 import { Badge } from '@/components/atoms/Badge';
 import { Button } from '@/components/atoms/Button';
 import { MapPin, Clock, ArrowUpRight } from 'lucide-react';
+import Link from 'next/link';
 
 interface NeedCardProps {
+  id: string;
   title: string;
   location: string;
   urgency: string;
@@ -11,7 +13,7 @@ interface NeedCardProps {
   createdAt: string;
 }
 
-export const NeedCard = ({ title, location, urgency, tags, createdAt }: NeedCardProps) => {
+export const NeedCard = ({ id, title, location, urgency, tags, createdAt }: NeedCardProps) => {
   const urgencyVariant = urgency.toLowerCase() as 'critical' | 'high' | 'medium';
   
   return (
@@ -38,9 +40,11 @@ export const NeedCard = ({ title, location, urgency, tags, createdAt }: NeedCard
       </div>
       
       <div className="mt-auto pt-4 border-t-2 border-black/5 flex items-center justify-between">
-        <Button variant="outline" size="sm" className="w-full text-[10px] gap-2">
-          VIEW DETAILS <ArrowUpRight className="w-3 h-3" />
-        </Button>
+        <Link href={`/needs/${id}`} className="w-full">
+          <Button variant="outline" size="sm" className="w-full text-[10px] gap-2">
+            VIEW DETAILS <ArrowUpRight className="w-3 h-3" />
+          </Button>
+        </Link>
       </div>
     </div>
   );

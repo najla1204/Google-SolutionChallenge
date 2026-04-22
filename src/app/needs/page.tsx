@@ -65,7 +65,7 @@ export default function NeedsPage() {
       <div className="max-w-[1550px] mx-auto px-6 py-12">
         <header className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 border-b-2 border-black pb-12">
            <div>
-              <h1 className="text-5xl font-black tracking-tighter italic mb-4">Community Needs</h1>
+              <h1 className="text-7xl font-black tracking-tighter italic mb-4 uppercase">URGENT NEEDS</h1>
               <p className="text-black/50 font-bold uppercase tracking-widest text-sm max-w-xl leading-relaxed">
                 Browse and help with real community problems in your area. Filter by location, urgency, or search by keyword.
               </p>
@@ -175,6 +175,7 @@ export default function NeedsPage() {
               {filteredNeeds.map((need) => (
                  <NeedCard 
                     key={need.id}
+                    id={need.id}
                     title={need.title}
                     location={need.location}
                     urgency={need.urgency_level || 'MEDIUM'}

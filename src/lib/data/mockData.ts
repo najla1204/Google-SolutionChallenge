@@ -13,7 +13,7 @@ export interface MockNeed {
   urgency_level: 'critical' | 'high' | 'medium' | 'low';
   tags: string[];
   created_at: string;
-  source: 'twitter' | 'facebook' | 'instagram' | 'youtube' | 'manual';
+  source: 'youtube' | 'manual';
   source_url?: string;
   priority_score: number;
   ngo_id?: string;
@@ -28,8 +28,7 @@ export const mockNeeds: MockNeed[] = [
     urgency_level: 'critical',
     tags: ['water', 'infrastructure', 'emergency', 'critical'],
     created_at: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
-    source: 'twitter',
-    source_url: 'https://twitter.com/status/123456',
+    source: 'manual',
     priority_score: 145,
     ngo_id: 'ngo-1'
   },
@@ -41,8 +40,7 @@ export const mockNeeds: MockNeed[] = [
     urgency_level: 'high',
     tags: ['power', 'electricity', 'infrastructure'],
     created_at: new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString(),
-    source: 'facebook',
-    source_url: 'https://facebook.com/post/789012',
+    source: 'manual',
     priority_score: 98,
     ngo_id: 'ngo-2'
   },
@@ -54,8 +52,7 @@ export const mockNeeds: MockNeed[] = [
     urgency_level: 'critical',
     tags: ['flood', 'weather', 'emergency', 'evacuation'],
     created_at: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(),
-    source: 'instagram',
-    source_url: 'https://instagram.com/p/345678',
+    source: 'manual',
     priority_score: 152,
     ngo_id: 'ngo-1'
   },
@@ -103,8 +100,7 @@ export const mockNeeds: MockNeed[] = [
     urgency_level: 'high',
     tags: ['road', 'tree', 'traffic', 'emergency'],
     created_at: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString(),
-    source: 'twitter',
-    source_url: 'https://twitter.com/status/234567',
+    source: 'manual',
     priority_score: 92
   },
   {
@@ -127,8 +123,7 @@ export const mockNeeds: MockNeed[] = [
     urgency_level: 'low',
     tags: ['education', 'children', 'school', 'supplies'],
     created_at: new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString(),
-    source: 'facebook',
-    source_url: 'https://facebook.com/post/456789',
+    source: 'manual',
     priority_score: 28
   },
   {
@@ -139,8 +134,7 @@ export const mockNeeds: MockNeed[] = [
     urgency_level: 'critical',
     tags: ['blood', 'donation', 'medical', 'emergency', 'critical'],
     created_at: new Date(Date.now() - 30 * 60 * 60 * 1000).toISOString(),
-    source: 'twitter',
-    source_url: 'https://twitter.com/status/345678',
+    source: 'manual',
     priority_score: 138,
     ngo_id: 'ngo-1'
   },
@@ -175,8 +169,7 @@ export const mockNeeds: MockNeed[] = [
     urgency_level: 'high',
     tags: ['air quality', 'health', 'emergency', 'masks'],
     created_at: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(),
-    source: 'twitter',
-    source_url: 'https://twitter.com/status/456789',
+    source: 'manual',
     priority_score: 95
   },
   {
@@ -187,8 +180,7 @@ export const mockNeeds: MockNeed[] = [
     urgency_level: 'low',
     tags: ['books', 'education', 'children', 'library'],
     created_at: new Date(Date.now() - 96 * 60 * 60 * 1000).toISOString(),
-    source: 'facebook',
-    source_url: 'https://facebook.com/post/567890',
+    source: 'manual',
     priority_score: 18
   },
   {
@@ -210,8 +202,7 @@ export const mockNeeds: MockNeed[] = [
     urgency_level: 'critical',
     tags: ['water', 'emergency', 'chennai', 'tamilnadu'],
     created_at: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(),
-    source: 'twitter',
-    source_url: 'https://twitter.com/status/tn_water',
+    source: 'manual',
     priority_score: 148
   },
   {
@@ -222,8 +213,7 @@ export const mockNeeds: MockNeed[] = [
     urgency_level: 'critical',
     tags: ['flood', 'rain', 'emergency', 'coimbatore', 'tamilnadu'],
     created_at: new Date(Date.now() - 30 * 60 * 1000).toISOString(),
-    source: 'facebook',
-    source_url: 'https://facebook.com/post/coimbatore_flood',
+    source: 'manual',
     priority_score: 142
   },
   {
@@ -234,8 +224,7 @@ export const mockNeeds: MockNeed[] = [
     urgency_level: 'high',
     tags: ['power', 'electricity', 'madurai', 'tamilnadu', 'infrastructure'],
     created_at: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
-    source: 'twitter',
-    source_url: 'https://twitter.com/status/madurai_power',
+    source: 'manual',
     priority_score: 96
   },
   {
@@ -246,8 +235,7 @@ export const mockNeeds: MockNeed[] = [
     urgency_level: 'critical',
     tags: ['accident', 'traffic', 'emergency', 'chennai', 'tamilnadu'],
     created_at: new Date(Date.now() - 45 * 60 * 1000).toISOString(),
-    source: 'twitter',
-    source_url: 'https://twitter.com/status/gst_accident',
+    source: 'manual',
     priority_score: 135
   },
   {
@@ -258,8 +246,7 @@ export const mockNeeds: MockNeed[] = [
     urgency_level: 'high',
     tags: ['medical', 'health', 'dengue', 'tirunelveli', 'tamilnadu'],
     created_at: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(),
-    source: 'instagram',
-    source_url: 'https://instagram.com/p/tn_medical',
+    source: 'manual',
     priority_score: 89
   },
   {
@@ -270,8 +257,7 @@ export const mockNeeds: MockNeed[] = [
     urgency_level: 'high',
     tags: ['food', 'flood', 'relief', 'cuddalore', 'tamilnadu'],
     created_at: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString(),
-    source: 'facebook',
-    source_url: 'https://facebook.com/post/cuddalore_food',
+    source: 'manual',
     priority_score: 92
   },
   {
@@ -293,8 +279,7 @@ export const mockNeeds: MockNeed[] = [
     urgency_level: 'high',
     tags: ['water', 'drinking', 'salem', 'tamilnadu', 'infrastructure'],
     created_at: new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString(),
-    source: 'twitter',
-    source_url: 'https://twitter.com/status/salem_water',
+    source: 'manual',
     priority_score: 87
   },
   {
@@ -316,8 +301,7 @@ export const mockNeeds: MockNeed[] = [
     urgency_level: 'low',
     tags: ['environment', 'beach', 'cleanup', 'rameswaram', 'tamilnadu'],
     created_at: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
-    source: 'facebook',
-    source_url: 'https://facebook.com/post/rameswaram_beach',
+    source: 'manual',
     priority_score: 32
   },
   {
@@ -339,8 +323,7 @@ export const mockNeeds: MockNeed[] = [
     urgency_level: 'critical',
     tags: ['cyclone', 'emergency', 'evacuation', 'nagapattinam', 'tamilnadu'],
     created_at: new Date(Date.now() - 15 * 60 * 1000).toISOString(),
-    source: 'twitter',
-    source_url: 'https://twitter.com/status/nagapattinam_cyclone',
+    source: 'manual',
     priority_score: 138
   },
   {
@@ -351,8 +334,7 @@ export const mockNeeds: MockNeed[] = [
     urgency_level: 'high',
     tags: ['blood', 'donation', 'medical', 'vellore', 'tamilnadu'],
     created_at: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
-    source: 'instagram',
-    source_url: 'https://instagram.com/p/vellore_blood',
+    source: 'manual',
     priority_score: 91
   },
   {
@@ -374,8 +356,7 @@ export const mockNeeds: MockNeed[] = [
     urgency_level: 'low',
     tags: ['heritage', 'temple', 'renovation', 'kumbakonam', 'tamilnadu'],
     created_at: new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString(),
-    source: 'facebook',
-    source_url: 'https://facebook.com/post/kumbakonam_temple',
+    source: 'manual',
     priority_score: 28
   }
 ];
@@ -406,7 +387,7 @@ export const mockVolunteers = [
     user_id: 'user-3',
     name: 'Michael Brown',
     email: 'michael@example.com',
-    skills: ['construction', 'repair', 'plumbing'],
+    skills: ['construction', 'repair', 'plumbing', 'Structural Engineering'],
     availability: 'flexible',
     location: 'Los Angeles',
     created_at: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString()
@@ -426,7 +407,7 @@ export const mockVolunteers = [
     user_id: 'user-5',
     name: 'David Wilson',
     email: 'david@example.com',
-    skills: ['driving', 'logistics', 'delivery'],
+    skills: ['driving', 'logistics', 'delivery', 'Heavy Equipment'],
     availability: 'flexible',
     location: 'Seattle',
     created_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString()
@@ -436,7 +417,7 @@ export const mockVolunteers = [
     user_id: 'user-6',
     name: 'Rajesh Kumar',
     email: 'rajesh@example.com',
-    skills: ['medical', 'first aid', 'tamil'],
+    skills: ['medical', 'first aid', 'tamil', 'Critical Care'],
     availability: 'weekends',
     location: 'Chennai, Tamil Nadu, India',
     created_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString()
@@ -446,7 +427,7 @@ export const mockVolunteers = [
     user_id: 'user-7',
     name: 'Priya Lakshmi',
     email: 'priya@example.com',
-    skills: ['teaching', 'tutoring', 'tamil', 'childcare'],
+    skills: ['teaching', 'tutoring', 'tamil', 'Crisis Counseling'],
     availability: 'evenings',
     location: 'Coimbatore, Tamil Nadu, India',
     created_at: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString()
@@ -456,7 +437,7 @@ export const mockVolunteers = [
     user_id: 'user-8',
     name: 'Suresh Pandian',
     email: 'suresh@example.com',
-    skills: ['construction', 'repair', 'plumbing', 'tamil'],
+    skills: ['construction', 'repair', 'plumbing', 'tamil', 'Masonry'],
     availability: 'flexible',
     location: 'Madurai, Tamil Nadu, India',
     created_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString()
@@ -466,7 +447,7 @@ export const mockVolunteers = [
     user_id: 'user-9',
     name: 'Anand Ramanathan',
     email: 'anand@example.com',
-    skills: ['cooking', 'food distribution', 'tamil'],
+    skills: ['cooking', 'food distribution', 'tamil', 'Logistics'],
     availability: 'weekdays',
     location: 'Trichy, Tamil Nadu, India',
     created_at: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString()
@@ -476,11 +457,49 @@ export const mockVolunteers = [
     user_id: 'user-10',
     name: 'Kavitha Subramanian',
     email: 'kavitha@example.com',
-    skills: ['driving', 'logistics', 'delivery', 'tamil'],
+    skills: ['driving', 'logistics', 'delivery', 'tamil', 'Rescue'],
     availability: 'flexible',
     location: 'Salem, Tamil Nadu, India',
     created_at: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000).toISOString()
+  },
+  {
+    id: 'v11',
+    user_id: 'user-11',
+    name: 'Robert Fox',
+    email: 'robert@example.com',
+    skills: ['Search & Rescue', 'First Aid', 'Mountain Climbing'],
+    availability: 'on-call',
+    location: 'Boulder, CO',
+    created_at: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString()
+  },
+  {
+    id: 'v12',
+    user_id: 'user-12',
+    name: 'Jane Cooper',
+    email: 'jane@example.com',
+    skills: ['Nursing', 'Pediatrics', 'Multilingual'],
+    availability: 'weekends',
+    location: 'New York',
+    created_at: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString()
   }
+];
+
+export const recentActivity = [
+  { id: "act-1", user: "John Smith", action: "accepted deployment for", target: "Water Shortage in Downtown", time: "12m ago" },
+  { id: "act-2", user: "System", action: "automatically matched", target: "Sarah Johnson to Literacy Camp", time: "25m ago" },
+  { id: "act-3", user: "Admin", action: "verified new responder", target: "Robert Fox", time: "1h ago" },
+  { id: "act-4", user: "Rajesh Kumar", action: "imported data from", target: "YouTube: #ChennaiCyclones", time: "2h ago" },
+  { id: "act-5", user: "ImpactFlow Bot", action: "detected urgency cluster in", target: "Southern District", time: "3h ago" },
+  { id: "act-6", user: "Priya Lakshmi", action: "delivered 500 units of", target: "Medical Kits to Coimbatore", time: "5h ago" },
+  { id: "act-7", user: "System", action: "synced with", target: "YouTube Data API v3", time: "6h ago" },
+  { id: "act-8", user: "Michael Brown", action: "resolved infrastructure issue at", target: "Sector 4 Main Pipe", time: "8h ago" },
+  { id: "act-9", user: "Emily Davis", action: "completed food drive for", target: "Homeless Shelter London", time: "12h ago" },
+  { id: "act-10", user: "David Wilson", action: "optimized delivery route for", target: "Nagapattinam Relief", time: "14h ago" },
+  { id: "act-11", user: "Kavitha Subramanian", action: "registered as", target: "Structural Engineering Specialist", time: "18h ago" },
+  { id: "act-12", user: "NGO: Urban Aid", action: "posted new critical need", target: "Wildfire Mask Distribution", time: "22h ago" },
+  { id: "act-13", user: "James Cooper", action: "verified logistics at", target: "Vellore Blood Bank", time: "1d ago" },
+  { id: "act-14", user: "System", action: "performed network health scan", target: "All Nodes", time: "1d ago" },
+  { id: "act-15", user: "User: 9182", action: "submitted report via", target: "Smart Scanner App", time: "2d ago" }
 ];
 
 export const mockNGOs = [

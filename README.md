@@ -137,6 +137,22 @@ CREATE TABLE tasks (
 CREATE INDEX idx_needs_location ON needs(location);
 CREATE INDEX idx_needs_urgency ON needs(urgency_level);
 CREATE INDEX idx_needs_priority_score ON needs(priority_score DESC);
+
+-- Row Level Security (RLS) Policies
+-- Enable RLS on profiles table
+ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
+
+-- Allow authenticated users to view their own profile
+CREATE POLICY "Users can view own profile" ON profiles
+  FOR SELECT USING (auth.uid() = id);
+
+-- Allow authenticated users to update their own profile
+CREATE POLICY "Users can update own profile" ON profiles
+  FOR UPDATE USING (auth.uid() = id);
+
+-- Allow authenticated users to insert their own profile
+CREATE POLICY "Users can insert own profile" ON profiles
+  FOR INSERT WITH CHECK (auth.uid() = id);
 ```
 
 ## Social Media Integration

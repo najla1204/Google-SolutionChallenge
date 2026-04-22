@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/atoms/Button';
-import { Shield, Mail, Lock } from 'lucide-react';
+import { Shield, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -12,6 +12,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -28,17 +29,40 @@ export default function LoginPage() {
       if (authError) throw authError;
 
       if (authData.user) {
-        // Fetch profile to redirect
-        const { data: profile } = await supabase
+        // Preferred method: Check profile table
+        const { data: profile, error: profileError } = await (supabase
           .from('profiles')
           .select('role')
           .eq('id', authData.user.id)
-          .single();
+          .single() as any);
 
-        router.push(profile?.role === 'ngo' ? '/dashboard' : '/needs');
+        // Self-healing: If profile is missing, create it from metadata
+        if (profileError || !profile) {
+          console.log('Profile missing, recreating from metadata...');
+          const profileData = {
+            id: authData.user.id,
+            email: authData.user.email || null,
+            name: authData.user.user_metadata?.name || authData.user.email?.split('@')[0] || 'User',
+            role: authData.user.user_metadata?.role || 'volunteer',
+            created_at: new Date().toISOString()
+          };
+          
+          await (supabase.from('profiles') as any).upsert(profileData);
+        }
+
+        // Fallback: Check user metadata (stored during signup)
+        const role = (profile?.role || authData.user.user_metadata?.role || 'volunteer').toLowerCase();
+        
+        console.log('Logging in with role:', role);
+        router.push(role === 'ngo' ? '/dashboard' : '/needs');
       }
     } catch (err: any) {
-      setError(err.message);
+      if (err.message === 'Failed to fetch' || err.name === 'TypeError') {
+        setError('Network Connection Error: Please check your internet connection or if Supabase is reachable.');
+        console.error('Login fetch failure:', err);
+      } else {
+        setError(err.message || 'An unexpected error occurred during login');
+      }
     } finally {
       setLoading(false);
     }
@@ -77,13 +101,20 @@ export default function LoginPage() {
           <div className="relative">
             <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-black/30" />
             <input 
-              type="password" 
+              type={showPassword ? 'text' : 'password'} 
               placeholder="Enter your password" 
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full border-2 border-black p-4 pl-12 text-sm font-medium tracking-widest focus:bg-slate-50 outline-none"
+              className="w-full border-2 border-black p-4 pl-12 pr-12 text-sm font-medium tracking-widest focus:bg-slate-50 outline-none"
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-black/30 hover:text-black transition-colors"
+            >
+              {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+            </button>
           </div>
 
           <Button type="submit" disabled={loading} className="w-full h-14 text-sm gap-3">

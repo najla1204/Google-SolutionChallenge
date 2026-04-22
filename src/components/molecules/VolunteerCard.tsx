@@ -39,7 +39,13 @@ export const VolunteerCard = ({ name, skills, availability, location }: Voluntee
           <span className="text-[8px] font-black uppercase text-black/30">Availability</span>
           <span className="text-xs font-black text-brand uppercase italic">{availability}</span>
         </div>
-        <Button size="sm" className="text-[10px]">MATCH NOW</Button>
+        <Button 
+          size="sm" 
+          className="text-[10px]"
+          onClick={() => alert(`Deployment request sent to ${name}. They will be notified immediately.`)}
+        >
+          MATCH NOW
+        </Button>
       </div>
     </div>
   );

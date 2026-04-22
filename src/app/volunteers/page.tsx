@@ -9,14 +9,17 @@ import { Search, Loader2 } from 'lucide-react';
 
 export default function VolunteersPage() {
   const [volunteers, setVolunteers] = useState<any[]>([]);
+  const [filteredVolunteers, setFilteredVolunteers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     async function fetchVolunteers() {
       try {
         const data = await VolunteerService.getAll();
         setVolunteers(data);
+        setFilteredVolunteers(data);
       } catch (err) {
         setError('Failed to load volunteer network.');
       } finally {
@@ -26,6 +29,16 @@ export default function VolunteersPage() {
     fetchVolunteers();
   }, []);
 
+  useEffect(() => {
+    const lowerQuery = searchQuery.toLowerCase();
+    const filtered = volunteers.filter(v => 
+      v.profiles?.name?.toLowerCase().includes(lowerQuery) ||
+      v.location?.toLowerCase().includes(lowerQuery) ||
+      v.skills?.some((s: string) => s.toLowerCase().includes(lowerQuery))
+    );
+    setFilteredVolunteers(filtered);
+  }, [searchQuery, volunteers]);
+
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
@@ -33,7 +46,7 @@ export default function VolunteersPage() {
       <div className="max-w-[1550px] mx-auto px-6 py-12">
         <header className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 border-b-2 border-black pb-12">
            <div>
-              <h1 className="text-7xl font-black tracking-tighter italic mb-4">VERIFIED NETWORK</h1>
+              <h1 className="text-7xl font-black tracking-tighter italic mb-4 uppercase">VERIFIED NETWORK</h1>
               <p className="text-black/50 font-bold uppercase tracking-widest text-sm max-w-xl leading-relaxed">
                 Directory of vetted responders and specialist taskforces. 
                 Manage deployments and skill distributions.
@@ -46,6 +59,8 @@ export default function VolunteersPage() {
                  <input 
                     type="text" 
                     placeholder="Search by skill or location..." 
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                     className="bg-transparent border-none outline-none p-3 w-full text-xs font-bold uppercase tracking-widest"
                  />
               </div>
@@ -63,7 +78,7 @@ export default function VolunteersPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {volunteers.map((vol) => (
+            {filteredVolunteers.map((vol) => (
                <VolunteerCard 
                   key={vol.id}
                   name={vol.profiles?.name || 'Anonymous Responder'}
