@@ -34,6 +34,16 @@ export const NeedService = {
       return need as Need || null;
     }
 
+    // Supabase expects a valid UUID for the 'id' field in the 'needs' table.
+    // Our mock data uses simple integers (e.g. "3"). If we send "3" to Supabase, it throws a 22P02 error.
+    const isValidUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
+    
+    if (!isValidUUID) {
+      // If it's not a valid UUID, it's a mock ID. Return from mock data to avoid a database console error.
+      const need = mockNeeds.find(n => n.id === id);
+      return need as Need || null;
+    }
+
     const { data, error } = await supabase
       .from('needs')
       .select('*')

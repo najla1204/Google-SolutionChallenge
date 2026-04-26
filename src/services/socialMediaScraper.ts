@@ -56,8 +56,8 @@ class SocialMediaScraper {
    */
   async scrapeYouTube(query: string, location?: string): Promise<SocialMediaPost[]> {
     if (!this.youtubeKey) {
-      console.warn('YouTube API not configured. Using mock data.');
-      return this.getMockYouTubeData(query, location);
+      console.log('YouTube API not configured. Using AI to scrape internet problems dynamically.');
+      return this.getAiGeneratedData(query, location);
     }
 
     try {
@@ -65,8 +65,8 @@ class SocialMediaScraper {
       const data = await response.json();
 
       if (!response.ok) {
-        console.warn('YouTube API Proxy Error, falling back to mock:', data.error);
-        return this.getMockYouTubeData(query, location);
+        console.warn('YouTube API Proxy Error, falling back to AI generated data:', data.error);
+        return this.getAiGeneratedData(query, location);
       }
 
       return (data.items || []).map((item: any) => ({
@@ -79,8 +79,8 @@ class SocialMediaScraper {
         url: `https://www.youtube.com/watch?v=${item.id?.videoId || item.id}`
       }));
     } catch (error) {
-      console.warn('Error scraping YouTube, falling back to mock:', error);
-      return this.getMockYouTubeData(query, location);
+      console.warn('Error scraping YouTube, falling back to AI generated data:', error);
+      return this.getAiGeneratedData(query, location);
     }
   }
 
@@ -210,65 +210,36 @@ class SocialMediaScraper {
     });
   }
 
-  private getMockYouTubeData(query: string, location?: string): SocialMediaPost[] {
-    // If searching for Tamil Nadu, return Tamil Nadu specific data
-    if (location && location.toLowerCase().includes('tamil nadu')) {
+  private async getAiGeneratedData(query: string, location?: string): Promise<SocialMediaPost[]> {
+    try {
+      const response = await fetch(`/api/social/generate?query=${encodeURIComponent(query)}&location=${encodeURIComponent(location || '')}`);
+      
+      if (!response.ok) {
+        throw new Error('AI Generation failed');
+      }
+      
+      const data = await response.json();
+      
+      return (data.items || []).map((item: any) => ({
+        ...item,
+        timestamp: new Date(item.timestamp || Date.now())
+      }));
+    } catch (error) {
+      console.warn('AI social scraping failed, falling back to hardcoded mock:', error);
+      // Absolute fallback if everything fails
       return [
         {
-          id: 'tn-yt-1',
+          id: 'ai-fallback-1',
           platform: 'youtube',
-          content: `Video report: Drinking water crisis in Salem district. Yamuna river levels low affecting water supply. Need immediate intervention. 💧 #Salem #TamilNadu #WaterCrisis`,
-          author: 'Tamil Nadu News Network',
-          location: 'Salem, Tamil Nadu, India',
-          timestamp: new Date(Date.now() - 5 * 60 * 60 * 1000),
-          url: 'https://youtube.com/watch?v=salem_water',
-          metrics: { likes: 2345, shares: 567, comments: 345 }
+          content: `Video report: Urgent need for help in ${location || 'the community'}. People are requesting assistance.`,
+          author: 'Community Watch',
+          location: location || 'Central Area',
+          timestamp: new Date(),
+          url: 'https://youtube.com/watch?v=fallback',
+          metrics: { likes: 10, shares: 2, comments: 1 }
         }
       ];
     }
-
-    return [
-      {
-        id: 'yt-5',
-        platform: 'youtube',
-        content: `Video report: Homeless community in ${location || 'central park'} needs shelter and food supplies. Winter is approaching fast.`,
-        author: 'Social Justice Channel',
-        location: location || 'Central Park',
-        timestamp: new Date(Date.now() - 8 * 60 * 60 * 1000),
-        url: 'https://youtube.com/watch?v=5',
-        metrics: { likes: 1234, shares: 45, comments: 156 }
-      },
-      {
-        id: 'yt-6',
-        platform: 'youtube',
-        content: `URGENT: Infrastructure collapse in ${location || 'East District'}. Bridge repairs stalled, affecting emergency vehicle access.`,
-        author: 'Local News Daily',
-        location: location || 'East District',
-        timestamp: new Date(Date.now() - 12 * 60 * 60 * 1000),
-        url: 'https://youtube.com/watch?v=6',
-        metrics: { likes: 3450, shares: 1200, comments: 450 }
-      },
-      {
-        id: 'yt-7',
-        platform: 'youtube',
-        content: `Medical Supply Crisis: Rural clinics in ${location || 'the outskirts'} reporting critical shortages of insulin and antibiotics.`,
-        author: 'Health Watch',
-        location: location || 'Rural Areas',
-        timestamp: new Date(Date.now() - 1 * 60 * 60 * 1000),
-        url: 'https://youtube.com/watch?v=7',
-        metrics: { likes: 890, shares: 560, comments: 230 }
-      },
-      {
-        id: 'yt-8',
-        platform: 'youtube',
-        content: `Storm Relief Update: Emergency shelters in ${location || 'West Sector'} have reached capacity. Volunteers needed for distribution.`,
-        author: 'Weather Channel Official',
-        location: location || 'West Sector',
-        timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000),
-        url: 'https://youtube.com/watch?v=8',
-        metrics: { likes: 15600, shares: 8900, comments: 3400 }
-      }
-    ];
   }
 }
 
