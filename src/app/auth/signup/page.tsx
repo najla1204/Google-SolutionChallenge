@@ -34,22 +34,8 @@ export default function SignupPage() {
       if (authError) throw authError;
 
       if (authData.user) {
-        // Explicitly create the profile record to ensure it exists in the public schema
-        // This is a safety measure in case the DB trigger is not active
-        const profileData = {
-          id: authData.user.id,
-          email: email,
-          name: name,
-          role: role,
-          created_at: new Date().toISOString()
-        };
-        
-        const { error: profileError } = await (supabase.from('profiles') as any).insert(profileData);
-        
-        if (profileError) {
-          console.warn('Profile creation error (might be duplicate if trigger is active):', profileError);
-        }
-
+        // Profile is created automatically by the DB trigger (handle_new_user)
+        // which runs with service-role privileges — no client-side insert needed.
         router.push(role === 'ngo' ? '/dashboard' : '/needs');
       }
     } catch (err: any) {

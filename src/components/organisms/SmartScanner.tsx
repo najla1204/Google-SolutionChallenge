@@ -167,12 +167,6 @@ export const SmartScanner = () => {
         </div>
       </div>
       
-      <style jsx>{`
-        @keyframes scan {
-          0% { top: 0; }
-          100% { top: 100%; }
-        }
-      `}</style>
     </div>
   );
 };
